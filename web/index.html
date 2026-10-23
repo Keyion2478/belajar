@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AHA DRIVE • Elation Engine</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Theatrical Stage Ambient Architecture -->
+  <div class="theatrical-stage-backdrop">
+    <div class="stage-spotlight-beam"></div>
+    <div class="stage-geometric-grid"></div>
+
+    <!-- Character Stage Portal (Right-Wing AAA Game Client Presentation) -->
+    <div class="stage-character-portal">
+      <img src="assets/nihilux_1.jpg" alt="Aha the Elation" class="stage-character-art">
+      <div class="stage-character-overlay"></div>
+      <div class="stage-spark-particles">
+        <span class="spark s1">♦</span>
+        <span class="spark s2">♥</span>
+        <span class="spark s3">✦</span>
+        <span class="spark s4">♠</span>
+        <span class="spark s5">✦</span>
+        <span class="spark s6">♣</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- Top Frosted Glass Ribbon Header -->
+    <header class="top-ribbon glass-panel-sm">
+      <div class="ribbon-left">
+        <span class="hazard-mark">🎭</span>
+        <span class="ribbon-brand">AHA DRIVE</span>
+        <span class="dot-sep">•</span>
+        <span class="ribbon-sub">ELATION ENGINE</span>
+      </div>
+      <div class="ribbon-center">
+        <span class="glass-pill gold-tint">[ STORAGE POOL: EPMFS ]</span>
+        <span class="glass-pill ruby-tint">[ VFS CACHE FULL ]</span>
+      </div>
+      <div class="ribbon-right">
+        <span class="status-indicator-badge live-pulse" id="topStatusBadge">● CORE READY</span>
+        <span class="glass-pill version-pill">v4.0 ELATION</span>
+      </div>
+    </header>
+
+    <div class="main-body">
+      <!-- Frosted Sidebar Navigation -->
+      <aside class="sidebar glass-panel">
+        <div class="brand-box">
+          <div class="brand-avatar-row">
+            <div class="nihilux-avatar-ring">
+              <img src="assets/nihilux_1.jpg" alt="Aha Avatar" class="nihilux-avatar-img">
+              <span class="avatar-mask-badge">🎭</span>
+            </div>
+            <div class="brand-text-col">
+              <div class="brand-tag">/// AHA PROTOCOL</div>
+              <h1 class="brand-title">AHA DRIVE</h1>
+              <div class="brand-subtitle">AHA VESSEL</div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="dashboard">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-label">Dashboard HUD</span>
+            <span class="nav-glow"></span>
+          </button>
+          <button class="nav-item" data-tab="transfers">
+            <span class="nav-icon">📡</span>
+            <span class="nav-label">Monitor Transfer</span>
+            <span class="nav-badge" id="navTransferBadge" style="display:none;">0</span>
+            <span class="nav-glow"></span>
+          </button>
+          <button class="nav-item" data-tab="accounts">
+            <span class="nav-icon">👥</span>
+            <span class="nav-label">Akun Google Drive</span>
+            <span class="nav-glow"></span>
+          </button>
+          <button class="nav-item" data-tab="union">
+            <span class="nav-icon">🔗</span>
+            <span class="nav-label">Union Storage Pool</span>
+            <span class="nav-glow"></span>
+          </button>
+          <button class="nav-item" data-tab="settings">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Pengaturan Engine</span>
+            <span class="nav-glow"></span>
+          </button>
+          <button class="nav-item" data-tab="logs">
+            <span class="nav-icon">📜</span>
+            <span class="nav-label">Log Kernel Rclone</span>
+            <span class="nav-glow"></span>
+          </button>
+        </nav>
+
+        <!-- System Diagnostics Card -->
+        <div class="diag-card glass-panel-nested">
+          <div class="diag-header">
+            <span class="diag-stars">★ ★ ★ ★ ★</span>
+            <span class="diag-core-pill">CORE 100%</span>
+          </div>
+          <div class="diag-row" id="diagRclone">
+            <span class="diag-dot dot-green"></span>
+            <span class="diag-label">Rclone: Ready</span>
+          </div>
+          <div class="diag-row" id="diagWinfsp">
+            <span class="diag-dot dot-green"></span>
+            <span class="diag-label">WinFsp: Mounted</span>
+          </div>
+          <div class="diag-footer">
+            <span>ASTRAL ENGINE KERNEL</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content Area -->
+      <main class="content-viewport">
+
+        <!-- ==================== TAB 1: DASHBOARD (BENTO GLASS LAYOUT) ==================== -->
+        <section class="tab-pane active" id="pane-dashboard">
+          <div class="pane-header">
+            <div class="pane-title-group">
+              <span class="hazard-label">/// SYSTEM CORE // STATUS MONITOR</span>
+              <h2 class="pane-title">KONTROL MOUNT AHA DRIVE</h2>
+            </div>
+            <button class="btn-refresh glass-btn" id="btnRefreshDashboard" onclick="loadDashboard()">
+              <span class="refresh-icon">🔄</span> REFRESH STATUS
+            </button>
+          </div>
+
+          <!-- BENTO GLASS GRID -->
+          <div class="bento-container">
+
+            <!-- Bento 1: Primary Mount Hero Card (Spans 2 Columns) -->
+            <div class="bento-card hero-mount-card glass-panel" id="mountHeroCard">
+              <div class="hero-mount-content">
+                <div class="card-tags-row">
+                  <span class="glass-pill gold-tint">[ VFS FULL CACHE ]</span>
+                  <span class="glass-pill">[ EPMFS POOL ]</span>
+                  <span class="badge-pill live-mount" id="badgeMountState">ONLINE</span>
+                </div>
+
+                <div class="mount-status-hero">
+                  <div class="status-light-indicator" id="heroStatusDot"></div>
+                  <div class="mount-status-text">
+                    <h3 class="mount-headline" id="heroMountHeadline">STATUS: MENGECEK...</h3>
+                    <p class="mount-subdesc" id="heroMountDesc">Menghubungkan ke daemon Rclone Virtual Disk...</p>
+                  </div>
+                </div>
+
+                <div class="hero-actions-row">
+                  <button class="btn-primary-gold" id="btnToggleMount" onclick="toggleMount()">
+                    <span class="btn-icon">⚡</span> <span id="lblToggleMount">PASANG (MOUNT) DRIVE</span>
+                  </button>
+                  <button class="btn-secondary-glass" id="btnOpenExplorer" onclick="openExplorer()">
+                    <span class="btn-icon">📂</span> BUKA FILE EXPLORER
+                  </button>
+                  <button class="btn-secondary-glass" onclick="switchTab('transfers')">
+                    <span class="btn-icon">📥</span> TRANSFER & UPLOAD
+                  </button>
+                </div>
+              </div>
+
+              <!-- Operator Persona Badge (Subtly Blended inside Hero Card) -->
+              <div class="hero-operator-badge">
+                <div class="operator-avatar-wrap">
+                  <img src="assets/nihilux_2.jpg" alt="Nihilux Theatrical" class="operator-avatar-img">
+                  <div class="operator-glow-overlay"></div>
+                </div>
+                <div class="operator-meta">
+                  <span class="operator-tag">STAGE OPERATOR</span>
+                  <span class="operator-title">AHA 🎭</span>
+                  <span class="operator-status"><span class="status-dot"></span> ELATION READY</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bento 2: 4-Column Quick Telemetry Tiles -->
+            <div class="bento-tile-grid">
+              <!-- Tile A: Drive Letter -->
+              <div class="bento-card glass-panel telemetry-tile">
+                <span class="tile-tag">HURUF DRIVE</span>
+                <div class="tile-val-row">
+                  <span class="tile-icon-sm">💽</span>
+                  <span class="tile-val highlight-gold" id="dashLetter">G:\</span>
+                </div>
+                <span class="tile-sub" id="dashVolume">AHA DRIVE</span>
+              </div>
+
+              <!-- Tile B: Target Remote -->
+              <div class="bento-card glass-panel telemetry-tile">
+                <span class="tile-tag">REMOTE TARGET</span>
+                <div class="tile-val-row">
+                  <span class="tile-icon-sm">🔗</span>
+                  <span class="tile-val" id="dashRemote">Gdrive_union:</span>
+                </div>
+                <span class="tile-sub">Multi-Account Pool</span>
+              </div>
+
+              <!-- Tile C: Cache Usage -->
+              <div class="bento-card glass-panel telemetry-tile">
+                <span class="tile-tag">CACHE BUFFER TERPAKAI</span>
+                <div class="tile-val-row">
+                  <span class="tile-icon-sm">📦</span>
+                  <span class="tile-val" id="dashCacheUsedVal">1.35 GB</span>
+                </div>
+                <span class="tile-sub" id="dashCachePath">A:\rclone_cache</span>
+              </div>
+
+              <!-- Tile D: Disk Free Space -->
+              <div class="bento-card glass-panel telemetry-tile">
+                <span class="tile-tag">SISA DISK CACHE</span>
+                <div class="tile-val-row">
+                  <span class="tile-icon-sm">🛡️</span>
+                  <span class="tile-val badge-safe" id="dashDiskFree">24.29 GB</span>
+                </div>
+                <span class="tile-sub">Ruang Penyimpanan Aman</span>
+              </div>
+            </div>
+
+            <!-- Bento 3: Live Sync Telemetry & Auto-Start (Split 2-Cols) -->
+            <div class="bento-split-row">
+              <!-- Live Transfer Telemetry Card -->
+              <div class="bento-card glass-panel transfer-telemetry-banner" id="transferMiniCard">
+                <div class="transfer-telemetry-left">
+                  <div class="telemetry-radar-icon">📡</div>
+                  <div class="telemetry-info">
+                    <h4 class="telemetry-headline" id="lblMiniTransferTitle">STATUS SINKRONISASI: ● IDLE (SEMUA FILE
+                      TERSINKRON)</h4>
+                    <p class="telemetry-sub" id="lblMiniTransferDesc">Semua data pada buffer lokal telah terunggah
+                      dengan aman ke Google Drive.</p>
+                  </div>
+                </div>
+                <button class="btn-outline-gold glass-btn" onclick="switchTab('transfers')">
+                  MONITOR TRANSFER 📊
+                </button>
+              </div>
+
+              <!-- Auto-Start Switch Bento Card -->
+              <div class="bento-card glass-panel autostart-card">
+                <div class="autostart-content">
+                  <div class="autostart-text">
+                    <span class="autostart-title">⚡ Auto-Start Windows</span>
+                    <span class="autostart-desc">Pasang drive otomatis saat Windows menyala</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="switchAutoStart" onchange="toggleAutoStart(this.checked)">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==================== TAB 2: TRANSFERS ==================== -->
+        <section class="tab-pane" id="pane-transfers">
+          <div class="pane-header">
+            <div class="pane-title-group">
+              <span class="hazard-label">/// TRANSMISSION // DATA FLOW MONITOR</span>
+              <h2 class="pane-title">MONITOR TRANSFER & UPLOAD CEPAT</h2>
+            </div>
+            <div class="telemetry-badge-live glass-panel-sm">
+              <span class="live-dot"></span> LIVE TELEMETRY
+            </div>
+          </div>
+
+          <!-- 4 Metrik Glass Tiles -->
+          <div class="metrics-grid">
+            <div class="metric-card glass-panel">
+              <span class="metric-title">STATUS TRANSFER</span>
+              <span class="metric-value" id="mCardStatus">○ MOUNT MATI</span>
+            </div>
+            <div class="metric-card glass-panel">
+              <span class="metric-title">KECEPATAN UPLOAD</span>
+              <span class="metric-value gold-glow" id="mCardSpeed">0 B/s</span>
+            </div>
+            <div class="metric-card glass-panel">
+              <span class="metric-title">DATA TERKIRIM</span>
+              <span class="metric-value" id="mCardTotal">0 B</span>
+            </div>
+            <div class="metric-card glass-panel">
+              <span class="metric-title">FILE SELESAI</span>
+              <span class="metric-value green-text" id="mCardCompleted">0 File</span>
+            </div>
+          </div>
+
+          <!-- Quick Drop / Upload Zone -->
+          <div class="bento-card glass-panel upload-drop-card" id="dropZoneContainer">
+            <div class="drop-header">
+              <div class="drop-icon">⚡</div>
+              <div class="drop-info">
+                <h4>UPLOAD BUFFER CEPAT KE AHA DRIVE</h4>
+                <p>Pilih file atau folder lokal. File disalin instan dengan kecepatan kilat ke cache buffer, lalu Rclone
+                  mengunggahnya secara berurutan ke Google Drive.</p>
+              </div>
+            </div>
+
+            <!-- Target Subfolder Bar -->
+            <div class="target-dir-bar glass-panel-nested">
+              <span class="dir-tag">📍 TARGET DIRECTORY:</span>
+              <span class="dir-path" id="transferTargetPath">G:\</span>
+              <div class="dir-actions">
+                <button class="btn-subtle" onclick="pickTargetSubfolder()">PILIH SUBFOLDER...</button>
+                <button class="btn-subtle btn-ghost" onclick="resetTargetFolder()">RESET ROOT</button>
+              </div>
+            </div>
+
+            <div class="upload-buttons-row">
+              <button class="btn-primary-gold" onclick="selectAndUploadFiles()">
+                📄 PILIH FILE LOKAL...
+              </button>
+              <button class="btn-secondary-glass" onclick="selectAndUploadFolder()">
+                📁 PILIH FOLDER LOKAL...
+              </button>
+            </div>
+
+            <!-- Stage 1 Local Buffer Progress -->
+            <div class="stage1-progress-container glass-panel-nested" id="stage1ProgressBox" style="display: none;">
+              <div class="stage1-info-row">
+                <span class="stage1-title" id="stage1Title">📥 Tahap 1: Menyalin ke Buffer AHA DRIVE...</span>
+                <button class="btn-cancel-small" id="stage1CancelBtn" onclick="cancelStage1()">❌ BATALKAN SALIN</button>
+              </div>
+              <div class="progress-bar-shell">
+                <div class="progress-bar-fill" id="stage1BarFill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cloud Queue Section -->
+          <div class="cloud-queue-section">
+            <div class="section-label-bar">
+              <span class="hazard-label">/// CLOUD DISPATCH // ANTREAN GOOGLE DRIVE</span>
+            </div>
+            <div class="cloud-transfers-container glass-panel" id="cloudTransfersList">
+              <div class="empty-state">
+                <div class="empty-icon">✨</div>
+                <p>Semua file sudah tersinkronisasi sempurna!<br>Tidak ada antrean upload yang tertunda saat ini.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 3: ACCOUNTS ==================== -->
+        <section class="tab-pane" id="pane-accounts">
+          <div class="pane-header">
+            <div class="pane-title-group">
+              <span class="hazard-label">/// AUTHENTICATION // GOOGLE DRIVE ROSTER</span>
+              <h2 class="pane-title">MANAJEMEN AKUN GOOGLE DRIVE</h2>
+            </div>
+            <div class="action-btn-group">
+              <button class="btn-primary-gold" onclick="openAddAccountModal()">
+                ➕ TAMBAH AKUN BARU
+              </button>
+              <button class="btn-secondary-glass" onclick="checkAllQuotas()">
+                🔄 CEK KUOTA
+              </button>
+            </div>
+          </div>
+
+          <div class="accounts-grid" id="accountsGrid">
+            <div class="loading-state">Memuat daftar akun Google Drive...</div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 4: UNION ==================== -->
+        <section class="tab-pane" id="pane-union">
+          <div class="pane-header">
+            <div class="pane-title-group">
+              <span class="hazard-label">/// UNION POOL // AGGREGATION ENGINE</span>
+              <h2 class="pane-title">PEMBUAT DRIVE GABUNGAN (UNION POOL)</h2>
+            </div>
+          </div>
+
+          <div class="bento-card glass-panel union-intro-card">
+            <p>Atur urutan dan strategi penyimpanan akun Google Drive di bawah ini. Akun yang dipilih akan digabungkan
+              menjadi satu drive virtual raksasa di File Explorer.</p>
+          </div>
+
+          <div class="union-config-row">
+            <div class="config-field">
+              <label>NAMA REMOTE UNION:</label>
+              <input type="text" id="inputUnionName" class="text-input" value="Gdrive_union" placeholder="Gdrive_union">
+            </div>
+            <div class="config-field flex-2">
+              <label>STRATEGI PENYIMPANAN (CREATE POLICY):</label>
+              <select id="selectUnionPolicy" class="select-input" onchange="updatePolicyDesc(this.value)">
+                <option value="epmfs">⚖️ Ratakan ke Akun Paling Kosong (Rekomendasi / epmfs)</option>
+                <option value="epff">⬇️ Koneksi Tercepat Merespons (First Found / epff)</option>
+                <option value="eplfs">📦 Habiskan Akun Paling Penuh Dulu (Least Free Space / eplfs)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="policy-desc-box glass-panel-nested" id="policyDescBox">
+            💡 Rekomendasi Resmi: File baru dialihkan ke akun yang memiliki sisa kuota paling besar (kapasitas terbagi
+            seimbang & aman).
+          </div>
+
+          <div class="section-label-bar">
+            <span class="hazard-label">URUTAN PRIORITAS PENGISIAN AKUN</span>
+          </div>
+
+          <div class="union-accounts-list glass-panel" id="unionAccountsList"></div>
+
+          <div class="union-actions-footer">
+            <button class="btn-primary-gold" onclick="saveUnion()">
+              💾 SIMPAN KONFIGURASI UNION
+            </button>
+            <button class="btn-secondary-glass" onclick="testUnion()">
+              🧪 UJI VALIDITAS
+            </button>
+            <span class="union-status-msg" id="unionStatusMsg"></span>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 5: SETTINGS ==================== -->
+        <section class="tab-pane" id="pane-settings">
+          <div class="pane-header">
+            <div class="pane-title-group">
+              <span class="hazard-label">/// SYSTEM CONFIG // VFS STORAGE ENGINE</span>
+              <h2 class="pane-title">PENGATURAN MOUNT & PROTEKSI CACHE</h2>
+            </div>
+          </div>
+
+          <div class="settings-form glass-panel">
+            <!-- Drive Letter -->
+            <div class="form-group">
+              <label class="form-label">1. HURUF DRIVE VIRTUAL (DRIVE LETTER):</label>
+              <select id="settingDriveLetter" class="select-input select-small"></select>
+            </div>
+
+            <!-- Volume Name -->
+            <div class="form-group">
+              <label class="form-label">2. NAMA LABEL VOLUME (WINDOWS EXPLORER):</label>
+              <input type="text" id="settingVolumeName" class="text-input" placeholder="AHA DRIVE">
+            </div>
+
+            <!-- Cache Folder -->
+            <div class="form-group">
+              <label class="form-label">3. FOLDER CACHE BUFFER SEMENTARA (VFS DIRECTORY):</label>
+              <div class="input-with-button">
+                <input type="text" id="settingCacheDir" class="text-input flex-1">
+                <button class="btn-secondary-glass" onclick="browseCacheFolder()">📁 PILIH FOLDER</button>
+              </div>
+              <div class="disk-gauge-status" id="settingDiskGauge">-</div>
+            </div>
+
+            <!-- Current Cache Usage Tile -->
+            <div class="cache-usage-tile glass-panel-nested">
+              <div class="tile-left">
+                <span class="tile-icon">📦</span>
+                <span class="tile-text" id="settingCacheUsageText">Penggunaan Cache: Menghitung...</span>
+              </div>
+              <div class="tile-actions">
+                <button class="btn-subtle" onclick="openCurrentCacheFolder()">📂 BUKA FOLDER</button>
+                <button class="btn-subtle btn-gold-subtle" onclick="refreshSettingsCache()">🔄 CEK UKURAN</button>
+              </div>
+            </div>
+
+            <!-- VFS Max Size & Age -->
+            <div class="form-row-2">
+              <div class="form-group flex-1">
+                <label class="form-label">4. BATAS MAKSIMAL CACHE (VFS MAX SIZE):</label>
+                <select id="settingCacheSize" class="select-input">
+                  <option value="2G">2G</option>
+                  <option value="5G">5G</option>
+                  <option value="10G">10G</option>
+                  <option value="15G">15G</option>
+                  <option value="20G">20G</option>
+                  <option value="50G">50G</option>
+                </select>
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">5. DURASI PENYIMPANAN CACHE (VFS MAX AGE):</label>
+                <input type="text" id="settingCacheAge" class="text-input" value="24h">
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <button class="btn-primary-gold" onclick="saveSettings()">
+                💾 SIMPAN PENGATURAN
+              </button>
+              <span class="save-status-msg" id="settingsSaveStatus"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 6: LOGS ==================== -->
+        <section class="tab-pane" id="pane-logs">
+          <div class="pane-header">
+            <div class="pane-title-group">
+              <span class="hazard-label">/// SYSTEM DIAGNOSTICS // EVENT LOGS</span>
+              <h2 class="pane-title">LOG AKTIVITAS RCLONE & KERNEL</h2>
+            </div>
+            <div class="action-btn-group">
+              <button class="btn-secondary-glass" onclick="refreshLogs()">🔄 REFRESH</button>
+              <button class="btn-danger-glass" onclick="clearLogs()">🧹 BERSIHKAN</button>
+              <button class="btn-secondary-glass" onclick="openLogFolder()">📂 BUKA FOLDER</button>
+            </div>
+          </div>
+
+          <div class="terminal-container glass-panel">
+            <div class="terminal-bar">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">rclone_daemon.log — STDOUT/STDERR</span>
+            </div>
+            <pre class="terminal-body" id="terminalLogBody">Memuat riwayat log...</pre>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal Tambah Akun Baru -->
+  <div class="modal-overlay" id="addAccountModal" style="display:none;">
+    <div class="modal-box glass-panel">
+      <div class="modal-header">
+        <h3>TAMBAH AKUN GOOGLE DRIVE</h3>
+        <button class="btn-close" onclick="closeAddAccountModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Masukkan nama alias untuk akun ini (contoh: <code>gdrive_pribadi</code> atau <code>luzia5</code>):</p>
+        <input type="text" id="inputNewAccountName" class="text-input" placeholder="gdrive_baru">
+        <p class="modal-hint">💡 Browser akan terbuka otomatis untuk meminta persetujuan login OAuth dari Google.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary-glass" onclick="closeAddAccountModal()">BATAL</button>
+        <button class="btn-primary-gold" onclick="submitAddAccount()">BUKA BROWSER LOGIN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
